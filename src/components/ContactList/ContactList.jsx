@@ -1,11 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-// prettier-ignore
-import { selectFilteredContacts, selectError, selectIsLoading } from '../../redux/contacts/contactsSelector';
+import {
+  selectFilteredContacts,
+  selectError,
+  selectIsLoading,
+} from '../../redux/contacts/contactsSelector';
 import { fetchContacts } from '../../redux/contacts/contactsOperation';
 import { ContactListItem } from './ContactListItem/ContactListItem';
 import { Loader } from 'components/Loader/Loader';
+import { Center } from '@chakra-ui/react';
 
 export const ContactList = () => {
   const filteredContacts = useSelector(selectFilteredContacts);
@@ -19,25 +23,27 @@ export const ContactList = () => {
   }, [dispatch]);
 
   return (
-    <ul>
-      {/* if loading and not error, show Loader */}
-      {isLoading && !error && <Loader />}
+    <Center>
+      <ul>
+        {/* if loading and not error, show Loader */}
+        {isLoading && !error && <Loader />}
 
-      {/* if not loading, not error and filtered contacts is empty, show warning */}
-      {!isLoading && !error && filteredContacts.length === 0 && (
-        <p>The Phonebook is empty. Please add a contact</p>
-      )}
+        {/* if not loading, not error and filtered contacts is empty, show warning */}
+        {!isLoading && !error && filteredContacts.length === 0 && (
+          <p>The Phonebook is empty. Please add a contact</p>
+        )}
 
-      {/* if not loading, not error and have atleast 1 filtered contact, show ContactListItem */}
-      {!isLoading &&
-        !error &&
-        filteredContacts.length > 0 &&
-        filteredContacts.map(filteredContact => (
-          <ContactListItem
-            key={filteredContact.id}
-            filteredContact={filteredContact}
-          />
-        ))}
-    </ul>
+        {/* if not loading, not error and have at least 1 filtered contact, show ContactListItem */}
+        {!isLoading &&
+          !error &&
+          filteredContacts.length > 0 &&
+          filteredContacts.map(filteredContact => (
+            <ContactListItem
+              key={filteredContact.id}
+              filteredContact={filteredContact}
+            />
+          ))}
+      </ul>
+    </Center>
   );
 };

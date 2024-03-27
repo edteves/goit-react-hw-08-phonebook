@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contacts/contactsOperation';
 import { selectContacts } from '../../redux/contacts/contactsSelector';
@@ -9,6 +8,7 @@ import {
   Input,
   Button,
   VStack,
+  Center, // Import Center component from Chakra UI
 } from '@chakra-ui/react';
 
 export const ContactForm = () => {
@@ -49,36 +49,38 @@ export const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <VStack spacing={4}>
-        <FormControl>
-          <FormLabel>Name</FormLabel>
-          <Input
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan."
-            required
-            value={name}
-            onChange={handleNameChange}
-          />
-        </FormControl>
-        <FormControl>
-          <FormLabel>Number</FormLabel>
-          <Input
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-            value={number}
-            onChange={handleNumberChange}
-          />
-        </FormControl>
-        <Button type="submit" colorScheme="blue">
-          Add Contact
-        </Button>
-      </VStack>
-    </form>
+    <Center>
+      <form onSubmit={handleSubmit}>
+        <VStack spacing={4}>
+          <FormControl>
+            <FormLabel>Name</FormLabel>
+            <Input
+              type="text"
+              name="name"
+              pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan."
+              required
+              value={name}
+              onChange={handleNameChange}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Number</FormLabel>
+            <Input
+              type="tel"
+              name="number"
+              pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+              value={number}
+              onChange={handleNumberChange}
+            />
+          </FormControl>
+          <Button type="submit" colorScheme="blue">
+            Add Contact
+          </Button>
+        </VStack>
+      </form>
+    </Center>
   );
 };

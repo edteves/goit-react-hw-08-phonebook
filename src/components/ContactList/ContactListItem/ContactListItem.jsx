@@ -1,7 +1,7 @@
-import css from './ContactListItem.module.css';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../../redux/contacts/contactsOperation';
+import { Button } from '@chakra-ui/react'; // Remove Center import as it's not necessary
 
 export const ContactListItem = ({ filteredContact }) => {
   const dispatch = useDispatch();
@@ -12,11 +12,25 @@ export const ContactListItem = ({ filteredContact }) => {
   };
 
   return (
-    <li className={css.contactListItem}>
-      <p>{filteredContact.name}:</p>
-      <p>{filteredContact.number}</p>
-      <button onClick={handleDelete}>Delete</button>
-    </li>
+    <ul
+      style={{
+        listStyle: 'none',
+        border: '2px solid blue',
+        padding: '10px',
+        borderRadius: '5px',
+        marginBottom: '5px',
+      }}
+    >
+      <li style={{ display: 'flex' }}>
+        {/* Apply display: inline-block */}
+        <p style={{ marginRight: '20px' }}>{filteredContact.name}:</p>
+        <p style={{ marginRight: '20px' }}>{filteredContact.number}</p>
+        <Button onClick={handleDelete} colorScheme="blue" size="sm">
+          {/* Set colorScheme to "blue" */}
+          Delete
+        </Button>
+      </li>
+    </ul>
   );
 };
 
