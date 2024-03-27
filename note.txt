@@ -1,1 +1,1 @@
-npi i axios react-helmet-async
+npm i @reduxjs/toolkit axios react-redux react-spinners react-router-dom

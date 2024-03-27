@@ -1,10 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-// Please create your own personal backend for development with the UI service mockapi.io
-// REFERENCE: https://mockapi.io/
-axios.defaults.baseURL = 'https://65fdca56b2a18489b3856cbe.mockapi.io';
-
 /*
  * GET @ /contacts
  */
